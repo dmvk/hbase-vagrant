@@ -1,0 +1,7 @@
+- hosts: hbase-all
+  roles:
+    - cdh5-base
+
+- hosts: hbase-master
+  roles:
+    - cdh5-master

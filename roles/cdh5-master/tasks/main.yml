@@ -1,0 +1,11 @@
+- name: Install namenode
+  apt: pkg=hadoop-hdfs-namenode state=latest
+
+- name: Install resource manager
+  apt: pkg=hadoop-yarn-resourcemanager state=latest
+
+- name: Install zookeeper server
+  apt: pkg=zookeeper-server state=latest
+
+- name: Install hbase master 
+  apt: pkg=hbase-master state=latest

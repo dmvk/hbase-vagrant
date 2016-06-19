@@ -1,0 +1,29 @@
+- name: Add Cloudera repository key
+  apt_key: url=https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/archive.key state=present
+  register: cdhkey 
+
+- name: Add Cloudera repository
+  get_url: url=https://archive.cloudera.com/cdh5/ubuntu/trusty/amd64/cdh/cloudera.list dest=/etc/apt/sources.list.d/cloudera.list
+  when: cdhkey.changed
+
+- name: Add Cloudera apt pinning
+  copy: src=cloudera.pref dest=/etc/apt/preferences.d/cloudera.pref owner=root group=root mode=0644
+  when: cdhkey.changed
+
+- name: Add Java repository
+  apt_repository: repo='ppa:webupd8team/java'
+  register: javarepo
+
+- name: Autoaccept license for Java
+  debconf: name='oracle-java8-installer' question='shared/accepted-oracle-license-v1-1' value='true' vtype='select'
+  when: javarepo.changed
+
+- name: Update repositories
+  apt: update_cache=yes
+  when: cdhkey.changed or javarepo.changed
+
+- name: Install Java 8 
+  apt: pkg={{item}} state=latest
+  with_items:
+    - oracle-java8-installer
+    - ca-certificates
