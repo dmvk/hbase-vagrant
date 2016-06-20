@@ -1,0 +1,8 @@
+- name: Install datanode 
+  apt: pkg=hadoop-hdfs-datanode state=latest
+
+- name: Install node manager
+  apt: pkg=hadoop-yarn-nodemanager state=latest
+
+- name: Install hbase master 
+  apt: pkg=hbase-regionserver state=latest

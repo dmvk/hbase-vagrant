@@ -2,11 +2,13 @@ controller ansible_connection=local
 hbase-master ansible_ssh_host=172.17.8.100 ansible_ssh_private_key_file=/vagrant/.vagrant/machines/hbase-master/virtualbox/private_key
 hbase-01 ansible_ssh_host=172.17.8.101 ansible_ssh_private_key_file=/vagrant/.vagrant/machines/hbase-01/virtualbox/private_key
 hbase-02 ansible_ssh_host=172.17.8.102 ansible_ssh_private_key_file=/vagrant/.vagrant/machines/hbase-02/virtualbox/private_key
+hbase-03 ansible_ssh_host=172.17.8.103 ansible_ssh_private_key_file=/vagrant/.vagrant/machines/hbase-03/virtualbox/private_key
 
 [hbase-all]
 hbase-master
 hbase-01
 hbase-02
+hbase-03
 
 [hbase-master]
 hbase-master
@@ -17,3 +19,4 @@ hbase-master
 [hbase-node]
 hbase-01
 hbase-02
+hbase-03

@@ -5,3 +5,7 @@
 - hosts: hbase-master
   roles:
     - cdh5-master
+
+- hosts: hbase-node
+  roles:
+    - cdh5-node
